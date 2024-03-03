@@ -4,56 +4,44 @@ This repository is a guide to setting up an environment for crawling a website u
 
 ## ⚡️ Requirements
 
-- Docker compsose and docker lastest Version
+- Docker lastest Version
 - Python 3.10.12 (Optional)
 
 ## 🚀 Getting Started
 
-- How/where to download your program
-- Any modifications needed to be made to files/folders
+- Firstly, we need to build the image which was used to become the executed environment.
 
-## Executing program
-
-- How to run the program
-- Step-by-step bullets
-
-```
-code blocks for commands
+```bash
+docker build -t selenium-python-in-docker-demo-app .
 ```
 
-## Help
+- To build the server for Selenium:
 
-Any advise for common problems or issues.
+```bash
+docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
+```
 
+- To run the demo script python:
+
+```bash
+docker run --rm -it -v .:/code/ --network "host" selenium-python-in-docker-demo-app bash
+root@hau:/code# python demo.py
+Page title: example search term - Tìm trên Google
 ```
-command to run if program contains helper info
+
+## Optional
+
+- To run demo script python in locally, just need to build the server for Selenium and Python 3.10.12 ( virtual environment package must be installed) above:
+
+```bash
+python3 -m venv env
+source env/bin/activate
+python3 demo.py
 ```
+
+- The repository could be improved for your project, feel free to use it. :)
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-- 0.2
-  - Various bug fixes and optimizations
-  - See [commit change]() or See [release history]()
-- 0.1
-  - Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-
-- [awesome-readme](https://github.com/matiassingers/awesome-readme)
-- [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-- [dbader](https://github.com/dbader/readme-template)
-- [zenorocha](https://gist.github.com/zenorocha/4526327)
-- [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+Hau Phan Trong
+hauphanlvc@gmail.com
