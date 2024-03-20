@@ -15,9 +15,11 @@ This repository is a guide to setting up an environment for crawling a website u
 docker build -t selenium-python-in-docker-demo-app .
 ```
 
-- To build the server for Selenium:
+- To build the servers for Selenium:
 
 ```bash
+docker compose up --scale chrome-node=3 # with 3 is chrome containters which wanna to create
+or
 docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
 ```
 
@@ -25,9 +27,10 @@ docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
 
 ```bash
 docker run --rm -it -v .:/code/ --network "host" selenium-python-in-docker-demo-app bash
-root@hau:/code# python demo.py
-Page title: example search term - Tìm trên Google
+root@hau:/code# python scraping_data.py
 ```
+
+## Note: If you got the error when running scraping_data.py OpenSSL.crypto.Error: [('PEM routines', '', 'no start line'), then just re-run again and that wil be fine.
 
 ## Optional
 
@@ -36,7 +39,7 @@ Page title: example search term - Tìm trên Google
 ```bash
 python3 -m venv env
 source env/bin/activate
-python3 demo.py
+python3 scraping_data.py
 ```
 
 - The repository could be improved for your project, feel free to use it. :)
